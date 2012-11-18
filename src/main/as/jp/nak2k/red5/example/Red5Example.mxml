@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:s="library://ns.adobe.com/flex/spark"
+               xmlns:helper="jp.nak2k.red5.example.*">
+
+  <fx:Declarations>
+    <helper:Red5ExampleHelper id="helper"/>
+  </fx:Declarations>
+
+  <fx:Binding source="connectUrl.text" destination="helper.connectUrl" twoWay="true" /> 
+
+  <s:Panel title="Red5 Example" width="100%" height="100%">    
+    <s:layout>
+      <s:VerticalLayout paddingTop="10" paddingLeft="10" paddingRight="10" paddingBottom="10" />
+    </s:layout>
+
+    <s:HGroup height="100%">
+      <s:VGroup>
+
+	<s:Panel title="Common">
+	  <s:layout>
+	    <s:VerticalLayout paddingTop="10" paddingLeft="10" paddingRight="10"/>
+	  </s:layout>
+
+	  <s:HGroup>
+	    <s:Label>
+	      <s:text>Connect URL: </s:text>
+	    </s:Label>
+	    <s:TextInput id="connectUrl" width="400"/>
+	  </s:HGroup>
+
+	  <s:HGroup>
+	    <s:Button id="connectButton" label="connect" />
+	    <s:Button id="disconnectButton" label="disconnect" />
+	  </s:HGroup>
+	</s:Panel>
+
+	<s:Panel title="RPC">
+	  <s:layout>
+	    <s:VerticalLayout paddingTop="10" paddingLeft="10" paddingRight="10"/>
+	  </s:layout>
+
+	  <s:HGroup>
+	    <s:Button id="testButton" label="test" />
+	    <s:Button id="measureBandwidthButton" label="measureBandwidth" />
+	  </s:HGroup>
+	</s:Panel>
+
+      </s:VGroup>
+
+      <s:TextArea id="logTextArea" width="600" height="100%">
+      </s:TextArea>
+    </s:HGroup>
+  </s:Panel>
+</s:Application>

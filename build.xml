@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="red5-example" basedir="." default="main">
+	<property environment="env" />
+	<property file="build.properties" />
+
+	<!-- do not change next 2 lines, it adds flex tasks to ant -->
+	<property name="FLEXTASKS" value="${FLEX_HOME}/ant/lib/flexTasks.jar" />
+	<taskdef classpath="${FLEXTASKS}" resource="flexTasks.tasks" />
+
+	<!-- properties -->
+	<property name="srcdir" value="${basedir}/src/main/as" />
+	<property name="targetdir" value="${basedir}/target" />
+	<property name="outputdir" value="${basedir}/target/webapp-swf" />
+
+	<!-- create the html and js files -->
+	<target name="wrapper">
+		<html-wrapper application="${ant.project.name}" bgcolor="#ffffff" express-install="false" file="index.html" height="95%" history="false" output="${outputdir}" swf="${ant.project.name}" title="${ant.project.name}" version-detection="true" width="95%" />
+	</target>
+
+	<!-- Release build -->
+	<target name="release-build">
+		<echo message="building..." />
+		<mxmlc accessible="false" debug="true" file="${srcdir}/jp/nak2k/red5/example/Red5Example.mxml" incremental="false" link-report="${targetdir}/link_report.xml" output="${outputdir}/${ant.project.name}.swf" static-link-runtime-shared-libraries="true" strict="true">
+			<optimize>true</optimize>
+			<source-path path-element="${srcdir}" />
+		</mxmlc>
+	</target>
+
+	<!-- build asdocs -->
+	<target name="build-asdocs">
+		<echo message="building asdocs..." />
+		<asdoc output="${targetdir}/asdocs">
+			<doc-sources path-element="${srcdir}" />
+		</asdoc>
+	</target>
+
+	<target name="main" depends="release-build, wrapper" />
+
+</project>
